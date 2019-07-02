@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+//when making a class we are creating a new class inside JS that has a new method render
+//We are subclassing the React.Component class
+//State is only used with class components or Functional w/ Hooks
+class App extends React.Component {
+  render() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => console.log(position),
+      (err) => console.log(err)
+    );
 
-ReactDOM.render(<App />, document.getElementById('root'));
+    return <div> Latitude: </div>;
+  }
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(
+  <App />,
+  document.querySelector('#root')
+);
