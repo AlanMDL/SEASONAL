@@ -28,21 +28,29 @@ class App extends React.Component {
     console.log("State update caused re-rendered!")
   }
 
-  //React says that we have to define render!!!
-  render() {
+  renderContent() {
     if (this.state.errorMessage && !this.state.lat) {
       return <div > Error: {
         this.state.errorMessage
-      } < /div>
+      } < /div>;
     }
     if (!this.state.errorMessage && this.state.lat) {
-      return <SeasonDisplay lat={this.state.lat} />
+      return <SeasonDisplay lat={this.state.lat} />;
     }
-    return <Spinner />
+    return <Spinner message="Please accept location request" />;
+  }
+
+  //React says that we have to define render!!!
+  render() {
+    return (
+      <div className="border red">
+        {this.renderContent()}
+      </div>
+    );
   }
 }
 
-ReactDOM.render( <
-  App / > ,
+ReactDOM.render(
+  <App / > ,
   document.querySelector('#root')
 );
